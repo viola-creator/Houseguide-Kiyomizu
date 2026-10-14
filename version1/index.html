@@ -202,16 +202,25 @@
   .info-card-value { font-family: var(--font-display); font-size: 20px; line-height: 1.5; }
   .info-card-detail { font-family: var(--font-body); font-weight: 300; font-size: 11px; color: var(--text-secondary); margin-top: 4px; line-height: 1.65; letter-spacing: 0.02em; }
 
-  .wifi-copy-trigger {
-    display: inline-flex; align-items: center; gap: 5px; margin-top: 9px;
-    padding: 4px 11px; background: var(--bg); border: 1px solid var(--border-light);
-    border-radius: 100px; cursor: pointer; font-family: var(--font-body);
-    font-weight: 300; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-muted); transition: all 0.25s;
+  .wifi-card { padding: 16px 20px; }
+  .wifi-card .info-card-icon { width: 14px; height: 14px; margin: 0; }
+  .wifi-label { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+  .wifi-label .info-card-label { margin: 0; }
+  .wifi-password-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px; }
+  .wifi-password { font-size: 11px; line-height: 1.7; color: var(--text-secondary); }
+  .wifi-password strong { font-weight: 500; user-select: all; }
+  .copy-button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    min-height: 44px; min-width: 75px; padding: 0 10px;
+    background: transparent; border: 1px solid var(--border-light); border-radius: 100px;
+    cursor: pointer; font-family: var(--font-body); font-weight: 400;
+    font-size: 9px; letter-spacing: 0.04em; color: var(--text-secondary);
+    flex-shrink: 0; transition: border-color 0.2s;
   }
-  .wifi-copy-trigger:hover { color: var(--text); border-color: var(--border); }
-  .wifi-copy-trigger.copied { background: rgba(0,0,0,0.04); border-color: var(--text-secondary); color: var(--text-secondary); }
-  .wifi-copy-trigger svg { width: 10px; height: 10px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+  .copy-button:hover { border-color: var(--text-secondary); }
+  .copy-button:focus-visible { outline: 1px solid var(--text); outline-offset: 3px; }
+  .copy-button svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+  .copy-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 
 
   /* ===== PHOTO BREAK ===== */
@@ -413,12 +422,16 @@
     <h2 class="section-header">Make yourself<br>at home</h2>
   </div>
   <div class="info-row reveal">
-    <div class="info-card info-card-full">
-      <svg class="info-card-icon" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
-      <div class="info-card-label">Wi-Fi Network</div>
+    <div class="info-card info-card-full wifi-card">
+      <div class="wifi-label">
+        <svg class="info-card-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+        <div class="info-card-label">Wi-Fi</div>
+      </div>
       <div class="info-card-value">Maana Kiyomizu</div>
-      <div class="info-card-detail">Password: <strong>Shared with your arrival details</strong></div>
-
+      <div class="wifi-password-row">
+        <div class="wifi-password">Password: <strong>riseandshine</strong></div>
+        <button class="copy-button" type="button" data-copy="riseandshine" data-copy-name="Wi-Fi password" aria-label="Copy Wi-Fi password"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span>Copy</span></button>
+      </div>
     </div>
   </div>
   <div class="info-row reveal">
@@ -571,7 +584,39 @@
   <div class="footer-legal">Higashiyama, Kyoto · maanahomes.com</div>
 </footer>
 
+<p class="copy-status" role="status" aria-live="polite"></p>
 <script>
+async function copyText(value) {
+  try {
+    await navigator.clipboard.writeText(value);
+  } catch (error) {
+    const field = document.createElement('textarea');
+    field.value = value;
+    field.setAttribute('readonly', '');
+    field.style.cssText = 'position:fixed;top:0;left:-9999px;opacity:0';
+    document.body.appendChild(field);
+    field.select();
+    const success = document.execCommand('copy');
+    field.remove();
+    if (!success) throw error;
+  }
+}
+document.querySelectorAll('[data-copy]').forEach(button => {
+  button.addEventListener('click', async () => {
+    const label = button.querySelector('span');
+    const status = document.querySelector('.copy-status');
+    clearTimeout(button.copyTimeout);
+    try {
+      await copyText(button.dataset.copy);
+      label.textContent = 'Copied';
+      status.textContent = button.dataset.copyName + ' copied.';
+    } catch (error) {
+      label.textContent = 'Select text';
+      status.textContent = 'Please select the displayed ' + button.dataset.copyName.toLowerCase() + ' to copy it.';
+    }
+    button.copyTimeout = setTimeout(() => { label.textContent = 'Copy'; status.textContent = ''; }, 3000);
+  });
+});
 const obs = new IntersectionObserver(e => { e.forEach(x => { if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)} }) }, {threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
