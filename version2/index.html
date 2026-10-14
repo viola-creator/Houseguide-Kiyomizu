@@ -198,13 +198,14 @@
   .arrival-actions { grid-column: 1 / -1; padding: 18px 0 10px; }
   .arrival-actions-title { font-size: 8px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-secondary); margin-bottom: 12px; }
   .arrival-task {
-    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    min-height: 48px; padding: 12px 16px; margin-bottom: 8px;
+    width: 100%; display: grid; grid-template-columns: 18px minmax(0, 1fr) 14px; align-items: center; gap: 10px;
+    min-height: 56px; padding: 12px 16px; margin-bottom: 8px;
     border: 1px solid var(--border); border-radius: 9px; background: transparent;
-    color: var(--text-secondary); font-family: var(--font-body); font-size: 11px; font-weight: 400;
-    text-align: left;
+    color: var(--text-secondary); font-family: var(--font-body); font-size: 14px; font-weight: 400;
+    text-align: left; line-height: 1.5;
   }
   .arrival-task svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.4; fill: none; flex-shrink: 0; }
+  .arrival-task .task-check { width: 18px; height: 18px; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .preview-button:disabled { opacity: 1; cursor: default; -webkit-text-fill-color: currentColor; }
   .help-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 10px; }
   .help-title { font-family: var(--font-display); font-size: 17px; line-height: 1.4; }
@@ -431,8 +432,8 @@
     <div class="arrival-actions">
       <h3 class="arrival-actions-title">Your arrival checklist</h3>
       <!-- Preview buttons: add real destinations when ready. Registration should open in a new tab using target="_blank" rel="noopener". -->
-      <button class="arrival-task preview-button" type="button" disabled title="Preview only — registration link to follow" data-action="registration"><span>Fill registration form</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3 10 14"/><path d="M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button>
-      <button class="arrival-task preview-button" type="button" disabled title="Preview only — payment link to follow" data-action="accommodation-tax"><span>Pay accommodation tax</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3 10 14"/><path d="M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button>
+      <button class="arrival-task preview-button" type="button" disabled title="Preview only — registration link to follow" data-action="registration"><svg class="task-check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Fill registration form</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3 10 14"/><path d="M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button>
+      <button class="arrival-task preview-button" type="button" disabled title="Preview only — payment link to follow" data-action="accommodation-tax"><svg class="task-check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>Pay accommodation tax</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3 10 14"/><path d="M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></button>
       <div class="help-row">
         <div><div class="help-title">Need a hand?</div><div class="help-hours">We're here, 10 AM – 6 PM</div></div>
         <button class="whatsapp-button preview-button" type="button" disabled title="Preview only — WhatsApp contact to follow" data-action="whatsapp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a9 9 0 0 1-13.3 7.9L3 21l1.6-4.7A9 9 0 1 1 21 11.5Z"/><path d="M8 7.5c-.8.8-.4 2.8 1.4 4.6s3.8 2.2 4.6 1.4l1-1-2-1-1 1a6 6 0 0 1-2.5-2.5l1-1-1-2Z"/></svg>WhatsApp</button>
