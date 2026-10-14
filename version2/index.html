@@ -190,6 +190,7 @@
   .copy-button:hover { border-color: var(--text-secondary); }
   .copy-button:focus-visible { outline: 1px solid var(--text); outline-offset: 3px; }
   .copy-button svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+  .book-now { text-decoration: none; padding-inline: 14px; white-space: nowrap; }
   .stay-times { display: flex; align-items: center; justify-content: space-between; padding: 16px; gap: 10px; }
   .stay-time { display: flex; align-items: baseline; gap: 7px; white-space: nowrap; }
   .stay-time-label { font-size: 9px; color: var(--text-secondary); font-weight: 400; }
@@ -463,7 +464,7 @@
     <p class="experiences-sub">Curated workshops and cultural immersions</p>
     <div class="guest-offer">
       <div><div class="guest-offer-label">10% off experiences</div><p class="guest-offer-detail">For our guests · Use <code class="guest-offer-code">GUEST10</code></p></div>
-      <button class="copy-button" type="button" data-copy="GUEST10" data-copy-name="Discount code" aria-label="Copy discount code"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span>Copy</span></button>
+      <a class="copy-button book-now" href="https://www.maana.jp/experiences" target="_blank" rel="noopener">Book now <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
   <div class="exp-scroll">
