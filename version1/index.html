@@ -228,6 +228,18 @@
   .photo-break img { width: 100%; height: 300px; object-fit: cover; display: block; }
 
 
+  /* ===== SHOP ===== */
+  .shop { padding: 52px 32px; background: var(--bg); }
+  .shop .section-header-sm { margin-bottom: 24px; }
+  .shop-image { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 65%; display: block; border-radius: 14px; }
+  .shop-description { font-family: var(--font-body); font-size: 13px; font-weight: 300; line-height: 1.85; color: var(--text-secondary); margin: 22px 0 18px; }
+  .shop-address { display: flex; align-items: flex-start; gap: 10px; min-height: 44px; color: var(--text-secondary); font-size: 12px; line-height: 1.85; text-decoration: none; }
+  .shop-address svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 3px; stroke: currentColor; stroke-width: 1.4; fill: none; }
+  .shop-address span { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 4px; }
+  .shop-address:hover span { text-decoration-color: currentColor; }
+  .shop-address:focus-visible { outline: 1px solid var(--text); outline-offset: 5px; border-radius: 3px; }
+
+
   /* ===== YOUR STAY ===== */
   .your-stay { background: var(--bg-panel); padding: 52px 32px; }
 
@@ -364,7 +376,7 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media (min-width: 600px) {
-    .step, .your-stay, .dining, .checkout, .footer, .address-block, .info-row, .experiences { padding-left: 48px; padding-right: 48px; }
+    .step, .shop, .your-stay, .dining, .checkout, .footer, .address-block, .info-row, .experiences { padding-left: 48px; padding-right: 48px; }
     .experiences { padding-right: 0; }
     .hero-content { padding-left: 48px; padding-right: 48px; }
     .exp-card { flex: 0 0 190px; }
@@ -463,9 +475,23 @@
 <div class="transition-bg-to-panel"></div>
 
 <!-- STEP 3 -->
+<section class="shop" id="maana-living">
+  <div class="reveal">
+    <div class="step-marker"><div class="step-number">3</div><div class="step-label">Shop</div></div>
+    <h2 class="section-header-sm">Maana Living</h2>
+    <img class="shop-image" src="../assets/maana-living-shop.jpg" alt="Ceramics and homeware displayed on dark wooden shelves at Maana Living" loading="lazy" decoding="async">
+    <p class="shop-description">Discover Japanese ceramics, homeware and antiques to bring a little of Maana’s quiet beauty into your everyday life.</p>
+    <a class="shop-address" href="https://www.google.com/maps/search/?api=1&amp;query=Maana+Living+427-19+Myohoin+Maekawacho+Higashiyama+Kyoto+605-0932" target="_blank" rel="noopener" aria-label="Find Maana Living at 427-19 Myohoin Maekawacho, Higashiyama Ward, Kyoto, 605-0932 on Google Maps (opens in a new tab)">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>427-19 Myohoin Maekawacho<br>Higashiyama Ward, Kyoto, 605-0932</span>
+    </a>
+  </div>
+</section>
+
+<!-- STEP 4 -->
 <section class="your-stay">
   <div class="reveal">
-    <div class="step-marker"><div class="step-number">3</div><div class="step-label">Your stay</div></div>
+    <div class="step-marker"><div class="step-number">4</div><div class="step-label">Your stay</div></div>
     <h2 class="section-header-sm">How things work</h2>
   </div>
   <div class="stay-item reveal">
@@ -491,10 +517,10 @@
 </section>
 <div class="transition-panel-to-bg"></div>
 
-<!-- STEP 4 -->
+<!-- STEP 5 -->
 <section class="dining">
   <div class="reveal">
-    <div class="step-marker"><div class="step-number">4</div><div class="step-label">Dining & Neighborhood</div></div>
+    <div class="step-marker"><div class="step-number">5</div><div class="step-label">Dining & Neighborhood</div></div>
     <h2 class="section-header">Eating well<br>in Kyoto</h2>
     <p class="dining-subtitle">A café pop-up and our neighborhood favorites</p>
   </div>
@@ -527,10 +553,10 @@
   <div class="place reveal" style="border-bottom:none"><div><div class="place-type">Bar</div><div class="place-name">IXEY</div><div class="place-desc">Great non-alcoholic options in a renovated machiya. Stylish without being stiff.</div></div><div><a class="place-map" href="https://maps.google.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Map</a></div></div>
 </section>
 
-<!-- STEP 5 -->
+<!-- STEP 6 -->
 <section class="experiences" id="experiences">
   <div class="reveal">
-    <div class="step-marker"><div class="step-number">5</div><div class="step-label">While you're here</div></div>
+    <div class="step-marker"><div class="step-number">6</div><div class="step-label">While you're here</div></div>
     <h2 class="section-header" style="padding-right:32px">Experiences</h2>
     <p class="experiences-sub">Curated workshops and cultural immersions</p>
   </div>
@@ -568,10 +594,10 @@
   </div>
 </section>
 
-<!-- STEP 6 -->
+<!-- STEP 7 -->
 <section class="checkout">
   <div class="reveal">
-    <div class="step-marker"><div class="step-number">6</div><div class="step-label">Before you leave</div></div>
+    <div class="step-marker"><div class="step-number">7</div><div class="step-label">Before you leave</div></div>
     <h2 class="section-header-sm">Checkout</h2>
   </div>
   <ul class="checkout-list reveal">
